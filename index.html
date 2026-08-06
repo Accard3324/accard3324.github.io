@@ -3,50 +3,65 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Abdulrahman Mohamud</title>
+<title>Abdul Mohamud</title>
 <meta name="description" content="Founder and software engineer in Columbus, Ohio. Building Pitlane, cloud software for independent auto repair shops, as the sole engineer.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Abdul Mohamud">
+<meta property="og:description" content="Founder and software engineer. Building Pitlane, cloud software for independent auto repair shops, as the sole engineer.">
+<meta property="og:url" content="https://owner-stack.github.io/">
+<meta property="og:image" content="https://owner-stack.github.io/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="favicon.png">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1>Abdulrahman Mohamud</h1>
-<p class="byline">Columbus, Ohio · <a href="https://github.com/owner-stack">GitHub</a> · <a href="https://www.linkedin.com/in/abdulmohamud/">LinkedIn</a> · <a href="mailto:abdul.mohamud.work@gmail.com">abdul.mohamud.work@gmail.com</a></p>
+<header class="masthead">
+  <h1>Abdul Mohamud</h1>
+  <p class="tagline">Founder and software engineer in Columbus, Ohio.</p>
+  <p class="where"><a href="https://github.com/owner-stack">GitHub</a> &nbsp;&middot;&nbsp; <a href="https://www.linkedin.com/in/abdulmohamud/">LinkedIn</a> &nbsp;&middot;&nbsp; <a href="mailto:abdul.mohamud.work@gmail.com">abdul.mohamud.work@gmail.com</a></p>
+</header>
 
-<p class="home-intro">I build <a href="https://www.usepitlane.com">Pitlane</a>, cloud software for independent auto repair shops. Sole founder and engineer: 1,500+ commits since April 2026, every merge gated on 5,000+ automated tests, all shipped to production. The write-ups below are the receipts.</p>
+<p class="home-intro">I build <a href="https://www.usepitlane.com">Pitlane</a>, cloud software for independent auto repair shops. Sole founder and engineer: 1,500+ commits since April 2026, every merge gated on 5,000+ automated tests, all shipped to production. The essays below are the receipts, and every claim in them traces to a commit.</p>
 
-<h2>Writing</h2>
-<div class="item">
-  <a href="writing/building-pitlane.html">118 days of building Pitlane, counted honestly</a>
-  <p class="desc">The whole build, month by month: every add, every deletion, the A2P compliance file, and what each month forced me to learn.</p>
+<div class="section-label">Writing</div>
+
+<div class="entry">
+  <div class="title"><a href="writing/building-pitlane.html">118 days of building Pitlane, counted honestly</a></div>
+  <div class="meta">August 2026 &middot; 24 minute read</div>
+  <div class="desc">The whole build, month by month: every add, every deletion, the A2P compliance file, and what each month forced me to learn.</div>
 </div>
-<div class="item">
-  <a href="writing/agent-company.html">I let AI agents work on my production codebase for 30 days</a>
-  <p class="desc">Scheduled agents that find bugs and open PRs, with SHA-locked approval from my phone. The failures are the interesting part.</p>
+<div class="entry">
+  <div class="title"><a href="writing/agent-company.html">I let AI agents work on my production codebase for 30 days</a></div>
+  <div class="meta">August 2026 &middot; 5 minute read</div>
+  <div class="desc">Scheduled agents that find bugs and open PRs, with SHA-locked approval from my phone. The failures are the interesting part.</div>
 </div>
-<div class="item">
-  <a href="writing/postcards.html">I mailed 3,005 postcards to auto repair shops and wired the whole funnel with telemetry</a>
-  <p class="desc">A direct-mail campaign instrumented end to end, the benchmark folklore that nearly killed it, and the code printed on the cards that didn't exist.</p>
+<div class="entry">
+  <div class="title"><a href="writing/postcards.html">I mailed 3,005 postcards to auto repair shops and wired the whole funnel with telemetry</a></div>
+  <div class="meta">August 2026 &middot; 6 minute read</div>
+  <div class="desc">A direct-mail campaign instrumented end to end, the benchmark folklore that nearly killed it, and the code printed on the cards that didn't exist.</div>
 </div>
 
-<h2>Projects</h2>
-<div class="item">
-  <a href="https://www.usepitlane.com">Pitlane</a>
-  <p class="desc">Shop management for independent auto repair shops: repair orders, text-to-pay, two-way SMS, digital inspections, review automation. One plan, self-serve trial, no demo call.</p>
+<div class="section-label">Projects</div>
+
+<div class="project">
+  <div class="name"><a href="https://www.usepitlane.com">usepitlane.com</a></div>
+  <div class="desc">Shop management for independent auto repair shops: repair orders, text-to-pay, two-way SMS, digital inspections, review automation. One plan, self-serve trial, no demo call.</div>
 </div>
-<div class="item">
-  <a href="https://github.com/owner-stack/agent-ops">agent-ops</a>
-  <p class="desc">Template for running scheduled AI agents against your own repo, with SHA-locked human approval over Telegram.</p>
+<div class="project">
+  <div class="name"><a href="https://github.com/owner-stack/agent-ops">agent-ops</a></div>
+  <div class="desc">Template for running scheduled AI agents against your own repo, with SHA-locked human approval over Telegram.</div>
 </div>
-<div class="item">
-  <a href="https://github.com/owner-stack/ssrf-safe-fetch">ssrf-safe-fetch</a>
-  <p class="desc">SSRF-hardened fetch for Node: DNS-rebinding pin, private-range blocking, redirect policy, byte and time caps. Zero dependencies.</p>
+<div class="project">
+  <div class="name"><a href="https://github.com/owner-stack/ssrf-safe-fetch">ssrf-safe-fetch</a></div>
+  <div class="desc">SSRF-hardened fetch for Node: DNS-rebinding pin, private-range blocking, redirect policy, byte and time caps. Zero dependencies.</div>
 </div>
-<div class="item">
-  <a href="https://github.com/owner-stack/shop-csv">shop-csv</a>
-  <p class="desc">Parses customer and vehicle CSV exports from Mitchell1, Tekmetric, and Shop-Ware into one normalized schema.</p>
+<div class="project">
+  <div class="name"><a href="https://github.com/owner-stack/shop-csv">shop-csv</a></div>
+  <div class="desc">Parses customer and vehicle CSV exports from Mitchell1, Tekmetric, and Shop-Ware into one normalized schema.</div>
 </div>
 
 <footer>
-  Written by me, built with AI agents I direct and review. Every claim in the case studies traces to a commit or a document.
+  Written by me, built with AI agents I direct and review. No scripts, no tracking, just pages.
 </footer>
 </body>
 </html>

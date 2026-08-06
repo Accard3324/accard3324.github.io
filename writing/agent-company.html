@@ -5,13 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>I let AI agents work on my production codebase for 30 days</title>
 <meta name="description" content="Scheduled agents that find bugs and open PRs, with SHA-locked approval from my phone. The failures are the interesting part.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="I let AI agents work on my production codebase for 30 days">
+<meta property="og:description" content="Scheduled agents that find bugs and open PRs, with SHA-locked approval from my phone. The failures are the interesting part.">
+<meta property="og:url" content="https://owner-stack.github.io/writing/agent-company.html">
+<meta property="og:image" content="https://owner-stack.github.io/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="../favicon.png">
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <nav class="top"><a href="../index.html">&larr; Abdul Mohamud</a></nav>
 <article>
 <h1 id="i-let-ai-agents-work-on-my-production-codebase-for-30-days-heres-what-actually-happened">I let AI agents work on my production codebase for 30 days. Here's what actually happened.</h1>
-<p class="byline">Abdul Mohamud &middot; August 2026</p>
+<p class="byline">Abdul Mohamud &middot; August 2026 &middot; 5 minute read</p>
 <p>The first night it ran, it found a bug that was silently deleting customer data.</p>
 <p>July 10, 2026. I'd spent the day wiring up a system I'd been sketching for a week: scheduled GitHub Actions jobs that wake up, read my SaaS's production telemetry through a read-only database role, look for problems, write fixes, and open pull requests. Nothing merges unless I tap approve on my phone. That night, the first unsupervised run flagged a PATCH endpoint where a validation library was coercing missing fields to null. Any partial update could quietly wipe fields the user never touched. Real data loss, live in production, and I had no idea.</p>
 <p>I read the PR in bed, tapped approve on Telegram, and it merged itself. PR #5. The fix is still in the codebase.</p>
@@ -31,8 +38,8 @@
 <p>This morning I rotated the system's GitHub credentials before their Sunday expiry, the way you'd do payroll for employees who never ask for raises. The cycles keep running. Yesterday's nightly found two access-control holes and by the time I woke up one already had a fix branch waiting.</p>
 <p>What I still don't know is where the ceiling is. Every rule in the charter exists because something specific went wrong, which means the rules I'm missing are the ones whose incidents haven't happened yet.</p>
 </article>
-<footer>
-  Abdul Mohamud &middot; August 2026 &middot; <a href="../index.html">home</a> &middot; <a href="https://github.com/owner-stack">GitHub</a> &middot; <a href="https://www.linkedin.com/in/abdulmohamud/">LinkedIn</a>
-</footer>
+<div class="article-end">
+<div class="home"><span class="label">More</span><a href="../index.html">All writing</a></div><div class="next"><span class="label">Next essay</span><a href="postcards.html">3,005 postcards, instrumented</a></div>
+</div>
 </body>
 </html>
