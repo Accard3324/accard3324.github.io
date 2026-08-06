@@ -1,67 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Abdul Mohamud</title>
-<meta name="description" content="Founder and software engineer in Columbus, Ohio. Building Pitlane, cloud software for independent auto repair shops, as the sole engineer.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Abdul Mohamud">
-<meta property="og:description" content="Founder and software engineer. Building Pitlane, cloud software for independent auto repair shops, as the sole engineer.">
-<meta property="og:url" content="https://owner-stack.github.io/">
-<meta property="og:image" content="https://owner-stack.github.io/og.png">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/png" href="favicon.png">
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ai-staged-shopee-listing - Open-Source Shopee Listing Automation</title>
+    <meta name="description" content="Open-source Shopee listing automation: AI prepares reviewable product content, then deterministic software executes approved seller-backend listing steps. Download and run on Windows.">
+    <meta name="keywords" content="ai, browser-automation, deterministic-automation, ecommerce, listing-automation, open-source, python, rpa, shopee, windows">
+    <meta name="author" content="Accard3324">
+    <meta property="og:title" content="ai-staged-shopee-listing - Open-Source Shopee Listing Automation">
+    <meta property="og:description" content="AI prepares reviewable product content, then deterministic software executes approved listing steps. Free and open-source for Windows.">
+    <meta property="og:url" content="https://github.com/Accard3324/ai-staged-shopee-listing">
+    <meta property="og:type" content="software">
+    <meta name="twitter:card" content="summary_large_image">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f4f6f9;
+            color: #333;
+            line-height: 1.7;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 40px 50px;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        h1 span.tagline {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #555;
+            background: #eef2f7;
+            padding: 5px 14px;
+            border-radius: 30px;
+            white-space: nowrap;
+        }
+        .badge-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 14px 38px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 6px 20px rgba(102,126,234,0.4);
+            margin: 20px 0 25px 0;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .badge-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(102,126,234,0.5);
+        }
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e9edf4;
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+        p {
+            margin-bottom: 18px;
+            font-size: 1.05rem;
+        }
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        code {
+            background: #f0f2f5;
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 0.95rem;
+        }
+        .button-download {
+            display: inline-block;
+            background: #2ecc71;
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 14px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 6px 20px rgba(46,204,113,0.35);
+            margin: 15px 0 10px 0;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .button-download:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(46,204,113,0.45);
+        }
+        .note-box {
+            background: #fff9e6;
+            border-left: 5px solid #f39c12;
+            padding: 16px 22px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .feature-item {
+            background: #f8faff;
+            padding: 14px 18px;
+            border-radius: 10px;
+            border: 1px solid #e0e7f0;
+        }
+        .feature-item strong {
+            color: #2c3e50;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #e0e7f0;
+            margin: 35px 0;
+        }
+        .footer-note {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            text-align: center;
+            margin-top: 30px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px 20px;
+            }
+            h1 {
+                font-size: 1.7rem;
+            }
+            h1 span.tagline {
+                font-size: 1rem;
+                white-space: normal;
+            }
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            .badge-link, .button-download {
+                font-size: 1rem;
+                padding: 12px 28px;
+            }
+        }
+    </style>
 </head>
 <body>
-<header class="masthead">
-  <h1>Abdul Mohamud</h1>
-  <p class="tagline">Founder and software engineer in Columbus, Ohio.</p>
-  <p class="where"><a href="https://github.com/owner-stack">GitHub</a> &nbsp;&middot;&nbsp; <a href="https://www.linkedin.com/in/abdulmohamud/">LinkedIn</a> &nbsp;&middot;&nbsp; <a href="mailto:abdul.mohamud.work@gmail.com">abdul.mohamud.work@gmail.com</a></p>
-</header>
-
-<p class="home-intro">I build <a href="https://www.usepitlane.com">Pitlane</a>, cloud software for independent auto repair shops. Sole founder and engineer: 1,500+ commits since April 2026, every merge gated on 5,000+ automated tests, all shipped to production. The essays below are the receipts, and every claim in them traces to a commit.</p>
-
-<div class="section-label">Writing</div>
-
-<div class="entry">
-  <div class="title"><a href="writing/building-pitlane.html">118 days of building Pitlane, counted honestly</a></div>
-  <div class="meta">August 2026 &middot; 24 minute read</div>
-  <div class="desc">The whole build, month by month: every add, every deletion, the A2P compliance file, and what each month forced me to learn.</div>
-</div>
-<div class="entry">
-  <div class="title"><a href="writing/agent-company.html">I let AI agents work on my production codebase for 30 days</a></div>
-  <div class="meta">August 2026 &middot; 5 minute read</div>
-  <div class="desc">Scheduled agents that find bugs and open PRs, with SHA-locked approval from my phone. The failures are the interesting part.</div>
-</div>
-<div class="entry">
-  <div class="title"><a href="writing/postcards.html">I mailed 3,005 postcards to auto repair shops and wired the whole funnel with telemetry</a></div>
-  <div class="meta">August 2026 &middot; 6 minute read</div>
-  <div class="desc">A direct-mail campaign instrumented end to end, the benchmark folklore that nearly killed it, and the code printed on the cards that didn't exist.</div>
-</div>
-
-<div class="section-label">Projects</div>
-
-<div class="project">
-  <div class="name"><a href="https://www.usepitlane.com">usepitlane.com</a></div>
-  <div class="desc">Shop management for independent auto repair shops: repair orders, text-to-pay, two-way SMS, digital inspections, review automation. One plan, self-serve trial, no demo call.</div>
-</div>
-<div class="project">
-  <div class="name"><a href="https://github.com/owner-stack/agent-ops">agent-ops</a></div>
-  <div class="desc">Template for running scheduled AI agents against your own repo, with SHA-locked human approval over Telegram.</div>
-</div>
-<div class="project">
-  <div class="name"><a href="https://github.com/owner-stack/ssrf-safe-fetch">ssrf-safe-fetch</a></div>
-  <div class="desc">SSRF-hardened fetch for Node: DNS-rebinding pin, private-range blocking, redirect policy, byte and time caps. Zero dependencies.</div>
-</div>
-<div class="project">
-  <div class="name"><a href="https://github.com/owner-stack/shop-csv">shop-csv</a></div>
-  <div class="desc">Parses customer and vehicle CSV exports from Mitchell1, Tekmetric, and Shop-Ware into one normalized schema.</div>
-</div>
-
-<footer>
-  Written by me, built with AI agents I direct and review. No scripts, no tracking, just pages.
-</footer>
+    <div class="container">
+        <h1>🤖 ai-staged-shopee-listing <span class="tagline">AI-Powered Shopee Product Listings</span></h1>
+        
+        <p><strong>Free, open-source automation for Shopee sellers.</strong> Let AI draft your product content, review it yourself, then let the software automatically list it on Shopee — no coding required.</p>
+        
+        <a href="https://github.com/Accard3324/ai-staged-shopee-listing" class="badge-link">⬇️ Download for Windows</a>
+        
+        <h2>🚀 What This Tool Does</h2>
+        <p>This software helps you list products on Shopee faster and safer. It works in two stages:</p>
+        <ul>
+            <li><strong>Stage 1 (AI Prepares):</strong> AI generates product titles, descriptions, and keywords based on your input. You can review and edit everything before it goes live.</li>
+            <li><strong>Stage 2 (Deterministic Automation):</strong> Once you approve the content, the software automatically fills in the Shopee seller dashboard — no manual copy-pasting, no errors.</li>
+        </ul>
+        <p>You stay in control: AI suggests, you approve, the robot executes.</p>
+        
+        <h2>✨ Features</h2>
+        <div class="feature-grid">
+            <div class="feature-item"><strong>🧠 AI Content Generation</strong> — Get smart suggestions for titles, descriptions, and keywords.</div>
+            <div class="feature-item"><strong>✅ Review Before Listing</strong> — See what will be posted. Edit or reject before automation runs.</div>
+            <div class="feature-item"><strong>🤖 Deterministic Automation</strong> — The bot follows exact steps. No randomness, no guesswork.</div>
+            <div class="feature-item"><strong>🪟 Windows Compatible</strong> — Runs on Windows 10 and 11. No Linux or Mac support.</div>
+            <div class="feature-item"><strong>🔒 Open Source</strong> — Code is fully visible. No hidden data collection.</div>
+            <div class="feature-item"><strong>⚡ Fast Batch Listing</strong> — List multiple products in one session.</div>
+        </div>
+        
+        <h2>📦 System Requirements</h2>
+        <ul>
+            <li>Windows 10 or 11 (64-bit)</li>
+            <li>4 GB RAM (8 GB recommended)</li>
+            <li>500 MB free disk space</li>
+            <li>Stable internet connection</li>
+            <li>Google Chrome or Edge browser installed</li>
+        </ul>
+        
+        <h2>💻 How to Download and Run</h2>
+        <p>Follow these exact steps:</p>
+        <ol>
+            <li><strong>Visit the download link:</strong> <a href="https://github.com/Accard3324/ai-staged-shopee-listing">https://github.com/Accard3324/ai-staged-shopee-listing</a></li>
+            <li>On the page, look for the <strong>"Releases"</strong> section or the green <strong>"Code"</strong> button. Click it.</li>
+            <li>Find the latest release. Download the file named <code>ai-staged-shopee-listing-setup.exe</code> or <code>ai-staged-shopee-listing.zip</code>.</li>
+            <li>If you downloaded a <code>.exe</code> file: double-click it and follow the installer instructions.</li>
+            <li>If you downloaded a <code>.zip</code> file: right-click and choose "Extract All", then open the extracted folder and run <code>ai-staged-shopee-listing.exe</code>.</li>
+            <li>Once installed, launch the application from your desktop shortcut or Start menu.</li>
+        </ol>
+        
+        <a href="https://github.com/Accard3324/ai-staged-shopee-listing" class="button-download">⬇️ Download Now</a>
+        
+        <h2>🔧 First-Time Setup</h2>
+        <ol>
+            <li>Open the app. You'll see a welcome screen.</li>
+            <li>Log in to your Shopee seller account when prompted (your credentials stay private on your computer).</li>
+            <li>Enter product details or upload a spreadsheet with your product data.</li>
+            <li>Click <strong>"Generate AI Content"</strong> — review and edit the suggestions.</li>
+            <li>Click <strong>"Start Listing"</strong> — the automation will fill in the Shopee form for you.</li>
+        </ol>
+        <div class="note-box">
+            <strong>💡 Tip:</strong> Start with one product to test. The automation mimics human typing — do not move your mouse or press keys while it runs.
+        </div>
+        
+        <h2>❓ Frequently Asked Questions</h2>
+        <h3>Is this safe to use?</h3>
+        <p>Yes. The software is open-source, meaning anyone can inspect the code. It does not send your data anywhere except to Shopee as part of the listing process.</p>
+        <h3>Do I need programming skills?</h3>
+        <p>No. The entire process is point-and-click. Just download, install, and follow the on-screen instructions.</p>
+        <h3>Can I edit the AI content?</h3>
+        <p>Absolutely. The AI is a helper — you have the final say. You can change any text before the automation runs.</p>
+        <h3>Will it work on Mac or Linux?</h3>
+        <p>No. This version is built for Windows only. Mac/Linux users may need to run it in a virtual machine.</p>
+        
+        <h2>📋 Troubleshooting</h2>
+        <ul>
+            <li><strong>App won't start:</strong> Make sure you have Windows 10/11 and the latest version of Chrome or Edge.</li>
+            <li><strong>Automation stops mid-way:</strong> Close other browser windows. Ensure your internet is stable. Restart the app.</li>
+            <li><strong>Antivirus warning:</strong> This is normal for automation tools. Add the app to your antivirus exclusions if needed.</li>
+        </ul>
+        
+        <hr>
+        <p style="text-align:center;"><strong>Keywords:</strong> ai, browser-automation, deterministic-automation, ecommerce, listing-automation, open-source, python, rpa, shopee, windows</p>
+        <p class="footer-note">ai-staged-shopee-listing is an open-source project by Accard3324. Not affiliated with Shopee. Use at your own risk.</p>
+    </div>
 </body>
 </html>
