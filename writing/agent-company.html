@@ -8,31 +8,31 @@
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-<nav class="top"><a href="../index.html">&larr; Abdulrahman Mohamud</a></nav>
+<nav class="top"><a href="../index.html">&larr; Abdul Mohamud</a></nav>
 <article>
-<h1>I let AI agents work on my production codebase for 30 days. Here's what actually happened.</h1>
-<p class="byline">Abdulrahman Mohamud &middot; August 2026</p>
+<h1 id="i-let-ai-agents-work-on-my-production-codebase-for-30-days-heres-what-actually-happened">I let AI agents work on my production codebase for 30 days. Here's what actually happened.</h1>
+<p class="byline">Abdul Mohamud &middot; August 2026</p>
 <p>The first night it ran, it found a bug that was silently deleting customer data.</p>
 <p>July 10, 2026. I'd spent the day wiring up a system I'd been sketching for a week: scheduled GitHub Actions jobs that wake up, read my SaaS's production telemetry through a read-only database role, look for problems, write fixes, and open pull requests. Nothing merges unless I tap approve on my phone. That night, the first unsupervised run flagged a PATCH endpoint where a validation library was coercing missing fields to null. Any partial update could quietly wipe fields the user never touched. Real data loss, live in production, and I had no idea.</p>
 <p>I read the PR in bed, tapped approve on Telegram, and it merged itself. PR #5. The fix is still in the codebase.</p>
-<h2>What this thing is</h2>
+<h2 id="what-this-thing-is">What this thing is</h2>
 <p>My product is Pitlane, shop management software for auto repair shops. I'm the only engineer. The agent system is a second repo I call HQ, and it's basically a company org chart implemented in cron: a morning cycle at 7:07am that reads overnight telemetry and writes me a brief, an afternoon cycle on weekdays, a nightly dev cycle that hunts bugs and writes code, and a Sunday strategy pass. All of it runs Claude with different charters. A skeptic pass reviews anything before it reaches me, on a fresh context, with a forced verdict format: PASS, CONCERNS, or BLOCK.</p>
 <p>The approval flow is the part I'd defend in an argument. Every proposed merge becomes a card in my Telegram. The card carries the diff summary and the exact commit SHA. When I tap approve, a dispatch fires and an executor merges that SHA and nothing else. If the branch moved since the card was made, the merge fails closed. I stole the idea from how deploy systems pin artifacts, and it's the reason I sleep fine with robots holding a pen over my prod repo.</p>
 <p>Thirty days in: PRs #3 through #41. Security fixes across tenant scoping, 2FA enforcement on admin routes, SMS compliance handling for STOP keywords with weird punctuation. A long series of copy audits where the agents grep the marketing site for claims the product can't back, which is a job I'd never do consistently myself. Two of my favorite merges are boring: one made every text message opt-out work even when someone writes "STOP." with a period, and one fixed the same null-wipe bug pattern in two more places, because of course it existed in more places.</p>
-<h2>The failures are the interesting part</h2>
+<h2 id="the-failures-are-the-interesting-part">The failures are the interesting part</h2>
 <p>You're probably waiting for the part where it deletes the database. It never did anything that dramatic. The failures were stranger.</p>
 <p>For five days at the end of July, the approval cards just stopped arriving. No errors anywhere. The cause: Telegram hard-rejects messages over 4096 characters, and the script was piping curl output to /dev/null, so the rejection was invisible. The agents kept working, kept proposing, and every proposal fell into a void while I assumed it was a quiet week. Silent failure in the notification layer is worse than loud failure anywhere else, and I only learned that by living it.</p>
 <p>The one that actually shook me was epistemic. In early August, six consecutive morning briefs told me my postcard campaign had never been mailed. They cited the database: 3,005 shop records still marked "pending," so the cards must be sitting in a warehouse. It was confident, sourced, internally consistent, and wrong. I had the mailing vendor's invoice. The cards were in mailboxes. What happened: nothing in my codebase ever writes the status "mailed." The agents treated a column that literally cannot change as evidence about the world, six briefs in a row.</p>
 <p>I was pissed, honestly, and mostly at myself, because the failure mode is human. It read a database column the way a person reads a dashboard: as if someone maintains it. The fix became a written rule in the company charter: before citing a status column as evidence, find the code that writes it. If no code writes it, it's not evidence, it's a fossil. There's a second rule bolted on: a correction from me outranks any inference from data, and the morning cycle reads my inbox before it reads anything else.</p>
 <p>There's also PR #39, which I want on the record because it's the whole argument for human review in one story. The agents proposed a customer-import deduplication fix. The skeptic passed it. It looked clean. It would have merged 400 contacts into 1. I rejected the card, sat down that weekend, and wrote the identity-resolution logic myself: 9,314 lines with tests. The system does a lot of my job now. That weekend it needed me to do mine.</p>
-<h2>The confession</h2>
+<h2 id="the-confession">The confession</h2>
 <p>For the first month I tracked spend against a $750 monthly cap with a per-run kill switch at $20, and I'd tell people, with a straight face, that my robot company ran on about $17 a day. In August I actually audited the pipeline that records those numbers. The runs execute on my Claude subscription's OAuth token. The API key that would be billed per token was empty the whole time. Every "cost" figure was Claude Code's own estimate of what the run would have cost, faithfully logged by my accounting script, billed to nobody. My agent company's finance department was doing meticulous bookkeeping in a currency that doesn't exist. The caps still matter, they just govern plan usage instead of dollars. But I believed a number for a month because my own tooling printed it, which is the exact sin the six briefs committed. I don't have a rule that fixes that one yet.</p>
-<h2>Where it stands</h2>
+<h2 id="where-it-stands">Where it stands</h2>
 <p>This morning I rotated the system's GitHub credentials before their Sunday expiry, the way you'd do payroll for employees who never ask for raises. The cycles keep running. Yesterday's nightly found two access-control holes and by the time I woke up one already had a fix branch waiting.</p>
 <p>What I still don't know is where the ceiling is. Every rule in the charter exists because something specific went wrong, which means the rules I'm missing are the ones whose incidents haven't happened yet.</p>
 </article>
 <footer>
-  Abdulrahman Mohamud &middot; August 2026 &middot; <a href="../index.html">home</a> &middot; <a href="https://github.com/owner-stack">GitHub</a> &middot; <a href="https://www.linkedin.com/in/abdulmohamud/">LinkedIn</a>
+  Abdul Mohamud &middot; August 2026 &middot; <a href="../index.html">home</a> &middot; <a href="https://github.com/owner-stack">GitHub</a> &middot; <a href="https://www.linkedin.com/in/abdulmohamud/">LinkedIn</a>
 </footer>
 </body>
 </html>
