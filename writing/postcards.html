@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>I mailed 3,005 postcards to auto repair shops and wired the whole funnel with telemetry</title>
+<meta name="description" content="A direct-mail campaign instrumented end to end, and the benchmark folklore that nearly killed it.">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<nav class="top"><a href="../index.html">&larr; Abdulrahman Mohamud</a></nav>
+<article>
+<h1>I mailed 3,005 postcards to auto repair shops and wired the whole funnel with telemetry</h1>
+<p class="byline">Abdulrahman Mohamud &middot; August 2026</p>
+<p>Each card cost me $1.07 all-in, printed with that specific shop's own numbers on it: their Google rating, their review count, and a dollar figure modeled from those reviews estimating what un-chased work costs them a year. A QR code goes to a page built for that one shop. Total spend, $3,227, which is real money when your product has zero paying customers, which mine did, because I'd wiped my early users a week before to start clean.</p>
+<p>I sell shop management software to independent auto repair shops. I'm a solo founder, no sales team, and cold calling shops mid-oil-change goes about how you'd expect. Every shop owner ignores SaaS ads all day, but physical mail from someone who knows their review count gets at least a look before the trash can. That was the bet.</p>
+<p>The cards dropped July 31 and landed August 4. Then I got to watch.</p>
+<h2>The part where I nearly judged it wrong</h2>
+<p>Day one: 34 scans. Day two: 30. By the end of the second day I had 44 unique shops who'd scanned, out of 3,005 mailed, about 4 emails captured, and zero signups. My gut said this was a disaster. A 1.5% shop response and no revenue on three grand.</p>
+<p>Before touching anything I did a research pass, because I'd promised myself the funnel would be judged on evidence and not on how my stomach felt at 1am. That's where it got weird.</p>
+<p>The direct mail benchmark everyone quotes is a 4.4% response rate, sometimes quoted as 10.8% for prospect lists from the ANA's industry report. I got the actual 84-page report. Its direct-mail numbers rest on 25 to 26 survey responses, mostly self-estimated rather than measured, and the report says in its own executive summary that the data "should not be considered benchmark data." The famous number is folklore with a citation format.</p>
+<p>The best real data turns out to be the USPS Household Diary Study, a probability-sample survey the Postal Service files with its regulator every year. Its finding: for mail from a company you have no relationship with, 2% of recipients report even <em>intending</em> to respond. Intent, not action. That's the honest ceiling for cold mail.</p>
+<p>My scan rate was sitting at that ceiling. The mail was fine. Better than fine. The leak was after the scan: people landed on the page and didn't leave an email. And I couldn't see why, because all I logged was a landing beacon. A shop that stared at the page for a minute and a shop that bounced in two seconds looked identical in my data.</p>
+<h2>Instruments first, opinions second</h2>
+<p>So I built the telemetry before changing the page. Every step between scan and capture now writes a row: landed, ask rendered (with milliseconds until it was tappable), ask actually scrolled into view, field focused, submitted, captured or failed with a one-word reason, left with dwell time. Rate-limited on its own budget so measuring a visitor can never crowd out capturing one, deduplicated so a replayed request writes nothing, and carrying no personal data at all, because the visitor hasn't asked me for anything yet.</p>
+<p>The first three complete visitor stories it recorded told me more than the previous four days combined. Two readers never scrolled far enough to see the email box at all. The third, a shop in Killeen, Texas, read the page for 31 seconds, scrolled the ask into view at the 16-second mark, and left without typing. Two different failures. The box was too low for some and unconvincing for others, and until that ladder existed I'd have guessed neither.</p>
+<p>The rebuild came straight off those stories plus the research: the ask moved up under the money number. The page dropped from 13 competing exits to one. Reading level pushed down toward how people actually talk at a counter. A real demand line, "44 shops pulled their scorecard this week," which is the one persuasion tactic with a rigorous positive result behind it, and no countdown timers anywhere, because the same literature shows fake urgency measuring somewhere between nothing and backwards. The email sequence grew from 5 to 7 sends after finding the one peer-reviewed study on sequence length, which says under-mailing costs about twice what over-mailing does. That one surprised me. I'd assumed fewer emails was the respectful choice, and the respectful choice was leaving money on the table.</p>
+<p>Remember the $1.07 per card? The research pass reframed that too. The competitors in my category charge $399 to $899 just to migrate a shop's data, published right on their pricing pages, and not one of the sixteen I checked offers a self-serve trial. My whole funnel, cards included, costs less than two of their setup fees, and it sells the one thing none of them will: try it without talking to a salesperson.</p>
+<h2>The code printed on the cards didn't exist</h2>
+<p>Every card carries the same founding offer for the first 25 shops, behind a code called FOUNDER90. When the cards went to print on July 23, the deal read $50 a month for your first three months. On August 2, two days after they mailed and two days before the first ones were delivered, I was in Stripe rewiring checkout for a pricing change and found there was no FOUNDER90 in Stripe at all. It had lived in mailer copy since May and never once in the billing system. All 3,005 cards in the mail stream pointed at a checkout that would have answered "invalid code."</p>
+<p>Creating the coupon was the small half of the fix. That same week I'd collapsed three pricing tiers into one plan at $200 a month, and the research pass had shown me a category where all sixteen competitors gate everything behind a demo call. So instead of quietly standing up the printed deal, I redefined the founding offer: 30 days free with no card at all, then three months at $0 once a card goes on file, then the regular $200. Strictly better than the printed terms at every point in time, which matters, because it means anyone who walks in off a postcard gets more than the paper promised and nobody ever needs an apology letter. The 25-seat cap is enforced in application code and fails closed if the count can't be read; the Stripe coupon technically allows 30 redemptions purely as headroom for two shops hitting the doorway at once, and it can never grant seat 26.</p>
+<p>I chose not to announce the upgrade or chase the discrepancy. The card in a shop's hand makes a promise and the checkout quietly beats it. That's the only direction I ever want that gap to run.</p>
+<h2>Where it actually stands</h2>
+<p>I'd love to end this with a revenue number. I don't have one. Direct mail response lags for weeks, the honest read date is around August 25, and the funnel changes are days old. Current state: 76 scans, a handful of captured emails, an instrumented page finally telling me the truth about itself, and one shop owner in Albuquerque who scanned his card twice at 4:54 in the morning, which I choose to read as interest and might just be insomnia.</p>
+<p>The thing I keep sitting with is that the campaign nearly died of a bad benchmark. If I'd trusted the 4.4% folklore, I'd have called 1.5% a failure, scrapped the channel, and never found out the real number said I was at the ceiling of what cold mail does. The postcards might still fail. But they'll fail or win on instruments now, not on vibes, and I know which of those two I'd bet a shop on.</p>
+</article>
+<footer>
+  Abdulrahman Mohamud &middot; August 2026 &middot; <a href="../index.html">home</a> &middot; <a href="https://github.com/owner-stack">GitHub</a> &middot; <a href="https://www.linkedin.com/in/abdulmohamud/">LinkedIn</a>
+</footer>
+</body>
+</html>
